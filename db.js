@@ -1,4 +1,4 @@
-let config = require('./config/config.json');
+let config = require('./config/config');
 const environment = process.env.NODE_ENV || 'development';
 config = config[environment];
 
