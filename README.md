@@ -40,7 +40,21 @@ This project was created for educational purposes at <a href="https://geekshubsa
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e7eb70030ba882a484c1)
 
-Alternatively, the project may be downloaded from <a href="https://github.com/T-zemmari/Dentist-appointment/archive/main.zip">this link</a>. You're welcome to borrow our code.
+Alternatively, the project may be downloaded from <a href="https://github.com/fbgoode/reactdent-b/archive/refs/heads/develop.zip">this link</a>. You're welcome to borrow our code.
+
+To run it locally, you need to have installed node.js, sequelize-cli to perform database migrations and docker with docker-compose to easily deploy a MySQL server. Clone the repo and run:
+
+`npm i`
+
+`docker-compose up`
+
+`sequelize db:create`
+
+`sequelize db:migrate`
+
+`sequelize db:seed:all`
+
+`npm start`
 
 <br>
 

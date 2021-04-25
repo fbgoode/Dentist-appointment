@@ -1,53 +1,58 @@
-const {User} = require('../models')
+const {User} = require('../models');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
+class UserController {
 
-class UserController{
+   // getting a list of all users
 
-  // getting a list of all users
-
-   async getAllUsers(){
-
-     return User.findAll()
+   async getAllUsers() {
+      return User.findAll();
    }
 
-// getting one user data
+   // getting one user's data
 
-   async getUserData(id){
-       return User.findByPk(id)
- }
-
- // get email from databae
-
-   async getuserByEmail(email){
-      return User.findOne({where:{email}})
-   }
-// creating a new User
-
-   async create(userData){
-    userData.admin =false;
-    let password =userData.password;
-    let passwordHashed = bcrypt.hashSync(password,10)
-    userData.password= passwordHashed;
-       return User.create(userData);
+   async getUserData(id) {
+      return User.findByPk(id);
    }
 
- //  updating user data
+   // getting user data by email from databae
 
-   async update(id,user){
-      await User.update(user,{where:{id}})
-       return this.getUserData(id)
+   async getuserByEmail(email) {
+      return User.findOne({
+         where: {
+            email
+         }
+      });
    }
 
-//   removing user data
+   // creating a new User
 
-   async delete(id){
-       return User.findByPkAndRemove(id)
+   async create(userData) {
+      userData.admin = false;
+      let password = userData.password;
+      let passwordHashed = bcrypt.hashSync(password, 10);
+      userData.password = passwordHashed;
+      return User.create(userData);
    }
 
+   // updating user data
+
+   async update(id, user) {
+      await User.update(user, {
+         where: {
+            id
+         }
+      });
+      return this.getUserData(id);
+   }
+
+   // removing user data
+
+   async delete(id) {
+      return User.findByPkAndRemove(id);
+   }
 
 }
 
-let userController= new UserController();
+let userController = new UserController();
 module.exports = userController;

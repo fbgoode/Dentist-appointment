@@ -1,13 +1,14 @@
 const {Appointment, User, sequelize} = require('../models');
 const { Op } = require('sequelize');
 
+// START Constants and function to convert time string to milliseconds
 
-const SECOND = 1000
-const MINUTE = SECOND * 60
-const HOUR = MINUTE * 60
-const DAY = HOUR * 24
-const WEEK = DAY * 7
-const YEAR = DAY * 365.25
+const SECOND = 1000;
+const MINUTE = SECOND * 60;
+const HOUR = MINUTE * 60;
+const DAY = HOUR * 24;
+const WEEK = DAY * 7;
+const YEAR = DAY * 365.25;
 
 const PERIOD = {
   ms: 1,
@@ -20,11 +21,13 @@ const PERIOD = {
 }
 
 const timetoms = (duration) => duration
-  .match(/[0-9]+(ms|[smhdwy])/g)
-  .reduce(
-    (acc, value) => acc += value.replace(/(ms|[smhdwy])/g, '') * PERIOD[value.slice(-1)],
-    0,
-  )
+    .match(/[0-9]+(ms|[smhdwy])/g)
+    .reduce(
+        (acc, value) => acc += value.replace(/(ms|[smhdwy])/g, '') * PERIOD[value.slice(-1)],
+        0,
+    );
+
+// END Constants and function to convert time string to milliseconds
 
 class AppointmentController{
 

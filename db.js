@@ -22,5 +22,5 @@ const sequelize = new Sequelize(
 );
 
 module.exports = sequelize.authenticate().then((db)=>{
-    console.log('mysql connect success'); return db;
+    console.log('mysql connection success'); return db;
 });
